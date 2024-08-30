@@ -21,13 +21,12 @@
         {% endfor %}
     </div>
     <div class="controls">
-        <button type="button" class="up" data-direction="up">↑</button>
-        <button type="button" class="left" data-direction="left">←</button>
-        <button type="button" class="right" data-direction="right">→</button>
-        <button type="button" class="down" data-direction="down">↓</button>
         <button type="button" class="undo" id="undo-button">Undo</button>
+        <button type="button" class="new-game" id="new-game-button">New Game</button>
     </div>
-    <a href="{% url 'reset' %}">New Game</a>
+    <script>
+        var resetUrl = "{% url 'reset' %}";
+    </script>
     <script src="{% static 'game/game.js' %}"></script>
 </body>
 </html>

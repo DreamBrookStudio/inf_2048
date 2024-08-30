@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', handleKeyPress);
-    document.querySelectorAll('.controls button[data-direction]').forEach(button => {
-        button.addEventListener('click', handleButtonClick);
-    });
     document.getElementById('undo-button').addEventListener('click', handleUndo);
+    document.getElementById('new-game-button').addEventListener('click', handleNewGame);
 
     // Add touch event listeners for swipe controls
     let touchStartX = 0;
@@ -30,11 +28,6 @@ function handleKeyPress(event) {
     makeMove(direction);
 }
 
-function handleButtonClick(event) {
-    const direction = event.target.getAttribute('data-direction');
-    makeMove(direction);
-}
-
 function handleUndo() {
     fetch('', {
         method: 'POST',
@@ -44,6 +37,20 @@ function handleUndo() {
             'X-Requested-With': 'XMLHttpRequest'
         },
         body: 'action=undo'
+    })
+    .then(response => response.json())
+    .then(data => {
+        updateGrid(data.grid);
+        document.getElementById('score').textContent = data.score;
+    });
+}
+
+function handleNewGame() {
+    fetch(resetUrl, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
     })
     .then(response => response.json())
     .then(data => {

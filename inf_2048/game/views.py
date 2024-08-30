@@ -78,14 +78,12 @@ def game(request):
     return render(request, 'game/game.html', context)
 
 def reset(request):
-    if 'grid' in request.session:
-        del request.session['grid']
-    if 'score' in request.session:
-        del request.session['score']
-    if 'previous_grid' in request.session:
-        del request.session['previous_grid']
-    if 'previous_score' in request.session:
-        del request.session['previous_score']
+    initialize_game(request)
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({
+            'grid': request.session['grid'],
+            'score': request.session['score']
+        })
     return redirect('game')
 
 def add_random(request):

@@ -22,10 +22,10 @@ h2 {
 .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 5px 5px;
     background-color: #bbada0;
     border-radius: 6px;
-    padding: 15px;
+    padding: 5px 5px;
     margin-bottom: 20px;
 }
 
@@ -91,9 +91,9 @@ a:hover {
 
 .controls {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px; /* Increased gap for larger buttons */
-    width: 350px; /* Increased width to accommodate larger buttons */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px; /* Increased gap for larger buttons */
+    width: 300px; /* Increased width to accommodate larger buttons */
     margin: 30px auto; /* Increased margin for better spacing */
 }
 
@@ -116,8 +116,5 @@ a:hover {
     background-color: #9f8b77;
 }
 
-.controls .up { grid-column: 2; grid-row: 1;}
-.controls .left { grid-column: 1; grid-row: 2; }
-.controls .right { grid-column: 3; grid-row: 2; }
-.controls .down { grid-column: 2; grid-row: 3; }
-.controls .undo { grid-column: 4; grid-row: 1; }
+.controls .new-game { grid-column: 1; grid-row: 1; }
+.controls .undo { grid-column: 3; grid-row: 1; }
