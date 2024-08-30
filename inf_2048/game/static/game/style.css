@@ -30,16 +30,16 @@ h2 {
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     background-color: #EEE;
     border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
-    color: #FFF;
+    color: #000000;
 }
 
 .cell-2 { background-color: #E6E6FA; color: #333; }  /* Lavender */

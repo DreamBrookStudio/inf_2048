@@ -24,6 +24,7 @@ def initialize_game(request):
         [0, 0, 0, 0]
     ]
     request.session['previous_score'] = 0
+    request.session['min_factor'] = 2
     add_random(request)
     add_random(request)
 
@@ -88,10 +89,17 @@ def reset(request):
 
 def add_random(request):
     grid = request.session['grid']
+    min_factor = request.session['min_factor']
+    non_zero_values = [cell for row in grid for cell in row if cell != 0]
+    min_value = min(non_zero_values) if non_zero_values else 2
+    max_value = max([max(r) for r in grid])
+    if max_value>=2048:
+        request.session['min_factor'] = min(min_value, max_value/1024)
+
     empty_cells = [(i, j) for i in range(4) for j in range(4) if grid[i][j] == 0]
     if empty_cells:
         i, j = random.choice(empty_cells)
-        grid[i][j] = 2 if random.random() < 0.9 else 4
+        grid[i][j] = 1*request.session['min_factor'] if random.random() < 0.9 else 2*request.session['min_factor']
         request.session['grid'] = grid
 
 def reset_grid_merged(grid_merged):
