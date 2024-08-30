@@ -42,17 +42,17 @@ h2 {
     color: #FFF;
 }
 
-.cell-2 { background-color: #BBDEFB; color: #333; }
-.cell-4 { background-color: #90CAF9; color: #333; }
-.cell-8 { background-color: #64B5F6; }
-.cell-16 { background-color: #42A5F5; }
-.cell-32 { background-color: #2196F3; }
-.cell-64 { background-color: #1E88E5; }
-.cell-128 { background-color: #1976D2; }
-.cell-256 { background-color: #1565C0; }
-.cell-512 { background-color: #0D47A1; }
-.cell-1024 { background-color: #0A3880; }
-.cell-2048 { background-color: #072A60; }
+.cell-2 { background-color: #E6E6FA; color: #333; }  /* Lavender */
+.cell-4 { background-color: #D8BFD8; color: #333; }  /* Thistle */
+.cell-8 { background-color: #DDA0DD; }               /* Plum */
+.cell-16 { background-color: #DA70D6; }              /* Orchid */
+.cell-32 { background-color: #BA55D3; }              /* Medium Orchid */
+.cell-64 { background-color: #9932CC; }              /* Dark Orchid */
+.cell-128 { background-color: #8A2BE2; }             /* Blue Violet */
+.cell-256 { background-color: #9400D3; }             /* Dark Violet */
+.cell-512 { background-color: #8B008B; }             /* Dark Magenta */
+.cell-1024 { background-color: #800080; }            /* Purple */
+.cell-2048 { background-color: #4B0082; }            /* Indigo */
 
 form {
     display: flex;
