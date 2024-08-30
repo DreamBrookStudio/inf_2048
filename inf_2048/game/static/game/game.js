@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', handleButtonClick);
     });
     document.getElementById('undo-button').addEventListener('click', handleUndo);
+
+    // Add touch event listeners for swipe controls
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const grid = document.getElementById('grid');
+    grid.addEventListener('touchstart', handleTouchStart, false);
+    grid.addEventListener('touchmove', handleTouchMove, false);
+    grid.addEventListener('touchend', handleTouchEnd, false);
 });
 
 function handleKeyPress(event) {
@@ -80,4 +91,46 @@ function updateGrid(grid) {
         cell.className = `cell cell-${value}`;
         cell.textContent = value || '';
     });
+}
+
+function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event) {
+    touchEndX = event.touches[0].clientX;
+    touchEndY = event.touches[0].clientY;
+}
+
+function handleTouchEnd() {
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+    const minSwipeDistance = 50; // minimum distance to be considered a swipe
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (Math.abs(diffX) > minSwipeDistance) {
+            if (diffX > 0) {
+                makeMove('left');
+            } else {
+                makeMove('right');
+            }
+        }
+    } else {
+        // Vertical swipe
+        if (Math.abs(diffY) > minSwipeDistance) {
+            if (diffY > 0) {
+                makeMove('up');
+            } else {
+                makeMove('down');
+            }
+        }
+    }
+
+    // Reset values
+    touchStartX = 0;
+    touchStartY = 0;
+    touchEndX = 0;
+    touchEndY = 0;
 }
