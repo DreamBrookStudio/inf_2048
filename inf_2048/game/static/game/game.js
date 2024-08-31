@@ -3,23 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('undo-button').addEventListener('click', handleUndo);
     document.getElementById('new-game-button').addEventListener('click', handleNewGame);
 
-    // Add touch event listeners for swipe controls
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
-
     const grid = document.getElementById('grid');
-    grid.addEventListener('touchstart', handleTouchStart, false);
-    grid.addEventListener('touchmove', handleTouchMove, false);
-    grid.addEventListener('touchend', handleTouchEnd, false);
+    grid.addEventListener('touchstart', handleTouchStart, { passive: false });
+    grid.addEventListener('touchmove', handleTouchMove, { passive: false });
+    grid.addEventListener('touchend', handleTouchEnd, { passive: false });
 
-    // Prevent default touch events
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, { passive: false });
-
-    document.addEventListener('touchstart', function(e) {
+    // Prevent scrolling when touching the grid
+    grid.addEventListener('touchmove', function(e) {
         e.preventDefault();
     }, { passive: false });
 });
@@ -110,13 +100,11 @@ function updateGrid(grid) {
 }
 
 function handleTouchStart(event) {
-    event.preventDefault();
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
 }
 
 function handleTouchMove(event) {
-    event.preventDefault();
     touchEndX = event.touches[0].clientX;
     touchEndY = event.touches[0].clientY;
 }

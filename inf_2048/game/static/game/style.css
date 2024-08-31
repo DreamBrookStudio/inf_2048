@@ -17,6 +17,7 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 h1 {
@@ -37,6 +38,7 @@ h2 {
     border-radius: 6px;
     padding: 5px 5px;
     margin-bottom: 20px;
+    touch-action: none; /* Disable browser handling of all panning and zooming gestures on the grid */
 }
 
 .cell {
