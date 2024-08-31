@@ -94,7 +94,7 @@ def add_random(request):
     min_value = min(non_zero_values) if non_zero_values else 2
     max_value = max([max(r) for r in grid])
     if max_value>=2048:
-        request.session['min_factor'] = min(min_value, max_value/1024)
+        request.session['min_factor'] = min(min_value, max_value/512)
 
     empty_cells = [(i, j) for i in range(4) for j in range(4) if grid[i][j] == 0]
     if empty_cells:

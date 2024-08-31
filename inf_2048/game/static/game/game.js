@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.addEventListener('touchstart', handleTouchStart, false);
     grid.addEventListener('touchmove', handleTouchMove, false);
     grid.addEventListener('touchend', handleTouchEnd, false);
+
+    // Prevent default touch events
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    }, { passive: false });
 });
 
 function handleKeyPress(event) {
@@ -101,11 +110,13 @@ function updateGrid(grid) {
 }
 
 function handleTouchStart(event) {
+    event.preventDefault();
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
 }
 
 function handleTouchMove(event) {
+    event.preventDefault();
     touchEndX = event.touches[0].clientX;
     touchEndY = event.touches[0].clientY;
 }
